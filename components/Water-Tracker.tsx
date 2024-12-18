@@ -65,7 +65,7 @@ function WaterTracker() {
                       <TableRow key={h.id}>
                         <TableCell>{h.id}</TableCell>
                         <TableCell>{h.quantity}</TableCell>
-                        <TableCell>{h.date.toISOString()}</TableCell>
+                        <TableCell>{`${h.date.toLocaleDateString()} ${h.date.toLocaleTimeString()}`}</TableCell>
                       </TableRow>
                     );
                   })}
@@ -83,7 +83,9 @@ function WaterTracker() {
                   tickLine={false}
                   tickMargin={10}
                   axisLine={false}
-                  tickFormatter={(value) => (value as Date).toISOString()}
+                  tickFormatter={(value) =>
+                    `${(value as Date).toLocaleDateString()} ${(value as Date).toLocaleTimeString()}`
+                  }
                 />
                 <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
                 <Bar dataKey="quantity" fill="var(--color-desktop)" radius={8} />
