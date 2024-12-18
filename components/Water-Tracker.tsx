@@ -18,6 +18,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+function EmptyState() {
+  return (
+    <div className="text-center mt-4">
+      <h2>You haven&apos;t added any water intake</h2>
+      <h3>Start Adding</h3>
+    </div>
+  );
+}
 function WaterTracker() {
   const [history, setHistory] = useState<WaterIntakeHistory[]>([]);
 
@@ -42,7 +50,7 @@ function WaterTracker() {
         <Button onClick={() => addWaterIntake(1000)}>+1000 ml</Button>
       </div>
       <div className="flex justify-center mt-4">
-        <Tabs defaultValue="table" className="w-[600px]">
+        <Tabs defaultValue="chart" className="w-[600px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="table">Table</TabsTrigger>
             <TabsTrigger value="chart">Charts</TabsTrigger>
@@ -72,25 +80,29 @@ function WaterTracker() {
                 </TableBody>
               </Table>
             )}
+            {history.length === 0 && <EmptyState />}
           </TabsContent>
 
           <TabsContent value="chart">
-            <ChartContainer config={chartConfig}>
-              <BarChart accessibilityLayer data={history}>
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="date"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) =>
-                    `${(value as Date).toLocaleDateString()} ${(value as Date).toLocaleTimeString()}`
-                  }
-                />
-                <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-                <Bar dataKey="quantity" fill="var(--color-desktop)" radius={8} />
-              </BarChart>
-            </ChartContainer>
+            {history.length !== 0 && (
+              <ChartContainer config={chartConfig}>
+                <BarChart accessibilityLayer data={history}>
+                  <CartesianGrid vertical={false} />
+                  <XAxis
+                    dataKey="date"
+                    tickLine={false}
+                    tickMargin={10}
+                    axisLine={false}
+                    tickFormatter={(value) =>
+                      `${(value as Date).toLocaleDateString()} ${(value as Date).toLocaleTimeString()}`
+                    }
+                  />
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+                  <Bar dataKey="quantity" fill="var(--color-desktop)" radius={8} />
+                </BarChart>
+              </ChartContainer>
+            )}
+            {history.length === 0 && <EmptyState />}
           </TabsContent>
         </Tabs>
       </div>
