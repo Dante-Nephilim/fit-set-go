@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import WaterTrackerTable from "./Water-Tracker-Table";
 import WaterTrackerChart from "./Water-Tracker-Chart";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export type WaterIntakeHistory = {
   quantity: number;
@@ -36,12 +36,9 @@ function WaterTracker() {
     <Card>
       <CardHeader>
         <CardTitle>Water Intake</CardTitle>
-        <CardDescription>Shows Water Intake History</CardDescription>
       </CardHeader>
       <CardContent>
         <div>
-          <h1 className="text-center text-xl m-2">Water Tracker</h1>
-          <h2 className="text-center text-xl m-2">Enter your water intake</h2>
           <div className="flex justify-center gap-5">
             <Button onClick={() => addWaterIntake(100)}>+100 ml</Button>
             <Button onClick={() => addWaterIntake(200)}>+200 ml</Button>

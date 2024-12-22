@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import SleepTrackerTable from "./Sleep-Tracker-Table";
 import SleepTrackerChart from "./Sleep-Tracker-Chart";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export type SleepDurationHistory = {
   duration: number;
@@ -36,12 +36,9 @@ function SleepTracker() {
     <Card>
       <CardHeader>
         <CardTitle>Sleep Duration</CardTitle>
-        <CardDescription>Shows Sleep Duration History</CardDescription>
       </CardHeader>
       <CardContent>
         <div>
-          <h1 className="text-center text-xl m-2">Sleep Tracker</h1>
-          <h2 className="text-center text-xl m-2">Enter your sleep duration</h2>
           <div className="flex justify-center gap-5">
             <Button onClick={() => addSleepIntake(1)}>+1 hr</Button>
             <Button onClick={() => addSleepIntake(2)}>+2 hr</Button>
