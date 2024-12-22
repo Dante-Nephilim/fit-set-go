@@ -1,5 +1,6 @@
 "use client";
 
+import SleepTracker from "@/components/Sleep-Tracker/Sleep-Tracker";
 // import BMITracker from "@/components/BMI-Tracker";
 // import FoodIntakeTracker from "@/components/Food-Intake-Tracker";
 // import SleepTracker from "@/components/Sleep-Tracker";
@@ -15,9 +16,9 @@ export default function Home() {
       <div> */}
       <WaterTracker />
       {/* </div>
-      <div>
-        <SleepTracker />
-      </div>
+      <div> */}
+      <SleepTracker />
+      {/* </div>
       <div>
         <FoodIntakeTracker />
       </div>
