@@ -3,7 +3,6 @@ import { useState } from "react";
 function WorkoutTracker() {
   const [workout, setWorkout] = useState<string>("");
   const [workoutTime, setWorkoutTime] = useState<number>(0);
-  const [caloriesBurnt, setCaloriesBurnt] = useState<number>(0);
 
   const calculateCaloriesBurnt = () => {
     console.log(workout);
