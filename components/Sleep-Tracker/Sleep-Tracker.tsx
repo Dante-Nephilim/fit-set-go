@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import SleepTrackerTable from "./Sleep-Tracker-Table";
 import SleepTrackerChart from "./Sleep-Tracker-Chart";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export type SleepDurationHistory = {
   duration: number;
@@ -32,34 +33,42 @@ function SleepTracker() {
   }
 
   return (
-    <div>
-      <h1 className="text-center text-xl m-2">Sleep Tracker</h1>
-      <h2 className="text-center text-xl m-2">Enter your sleep duration</h2>
-      <div className="flex justify-center gap-5">
-        <Button onClick={() => addSleepIntake(1)}>+1 hr</Button>
-        <Button onClick={() => addSleepIntake(2)}>+2 hr</Button>
-        <Button onClick={() => addSleepIntake(5)}>+5 hr</Button>
-        <Button onClick={() => addSleepIntake(10)}>+10 hr</Button>
-      </div>
-      <div className="flex justify-center mt-4">
-        <Tabs defaultValue="chart" className="w-[600px]">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="table">Table</TabsTrigger>
-            <TabsTrigger value="chart">Charts</TabsTrigger>
-          </TabsList>
+    <Card>
+      <CardHeader>
+        <CardTitle>Sleep Duration</CardTitle>
+        <CardDescription>Shows Sleep Duration History</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div>
+          <h1 className="text-center text-xl m-2">Sleep Tracker</h1>
+          <h2 className="text-center text-xl m-2">Enter your sleep duration</h2>
+          <div className="flex justify-center gap-5">
+            <Button onClick={() => addSleepIntake(1)}>+1 hr</Button>
+            <Button onClick={() => addSleepIntake(2)}>+2 hr</Button>
+            <Button onClick={() => addSleepIntake(5)}>+5 hr</Button>
+            <Button onClick={() => addSleepIntake(10)}>+10 hr</Button>
+          </div>
+          <div className="flex justify-center mt-4">
+            <Tabs defaultValue="chart" className="w-[600px]">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="table">Table</TabsTrigger>
+                <TabsTrigger value="chart">Charts</TabsTrigger>
+              </TabsList>
 
-          <TabsContent value="table">
-            {history.length !== 0 && <SleepTrackerTable data={history} total={total} />}
-            {history.length === 0 && <EmptyState />}
-          </TabsContent>
+              <TabsContent value="table">
+                {history.length !== 0 && <SleepTrackerTable data={history} total={total} />}
+                {history.length === 0 && <EmptyState />}
+              </TabsContent>
 
-          <TabsContent value="chart">
-            {history.length !== 0 && <SleepTrackerChart data={history} />}
-            {history.length === 0 && <EmptyState />}
-          </TabsContent>
-        </Tabs>
-      </div>
-    </div>
+              <TabsContent value="chart">
+                {history.length !== 0 && <SleepTrackerChart data={history} />}
+                {history.length === 0 && <EmptyState />}
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
