@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { TabsTrigger } from "@radix-ui/react-tabs";
-import { Tabs, TabsContent, TabsList } from "../ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import BMITable from "./BMI-Tracker-Table";
 import BMIChart from "./BMI-Tracker-Chart";
 import { Label } from "../ui/label";
@@ -41,7 +40,7 @@ function BMITracker() {
         <CardTitle>BMI History</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-center gap-5 items-end">
+        <div className="flex justify-center gap-5 items-end mb-5">
           <div>
             <Label htmlFor="weight">Weight (kg)</Label>
             <Input
@@ -64,22 +63,21 @@ function BMITracker() {
           </div>
           <Button onClick={() => calculateBMI()}>Calculate and Save your BMI</Button>
         </div>
-        <div>
-          <Tabs defaultValue="chart" className="w-[600px]">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="table">Table</TabsTrigger>
-              <TabsTrigger value="chart">Charts</TabsTrigger>
-            </TabsList>
-            <TabsContent value="table">
-              {history.length !== 0 && <BMITable data={history} />}
-              {history.length === 0 && <EmptyState />}
-            </TabsContent>
-            <TabsContent value="chart">
-              {history.length !== 0 && <BMIChart data={history} />}
-              {history.length === 0 && <EmptyState />}
-            </TabsContent>
-          </Tabs>
-        </div>
+        <Tabs defaultValue="chart">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="chart">Charts</TabsTrigger>
+            <TabsTrigger value="table">Table</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="table">
+            {history.length !== 0 && <BMITable data={history} />}
+            {history.length === 0 && <EmptyState />}
+          </TabsContent>
+          <TabsContent value="chart">
+            {history.length !== 0 && <BMIChart data={history} />}
+            {history.length === 0 && <EmptyState />}
+          </TabsContent>
+        </Tabs>
       </CardContent>
     </Card>
   );

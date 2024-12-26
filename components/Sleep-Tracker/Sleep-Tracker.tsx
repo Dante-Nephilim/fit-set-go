@@ -39,30 +39,28 @@ function SleepTracker() {
       </CardHeader>
       <CardContent>
         <div>
-          <div className="flex justify-center gap-5">
+          <div className="flex justify-center gap-5 flex-wrap mb-5">
             <Button onClick={() => addSleepIntake(1)}>+1 hr</Button>
             <Button onClick={() => addSleepIntake(2)}>+2 hr</Button>
             <Button onClick={() => addSleepIntake(5)}>+5 hr</Button>
             <Button onClick={() => addSleepIntake(10)}>+10 hr</Button>
           </div>
-          <div className="flex justify-center mt-4">
-            <Tabs defaultValue="chart" className="w-[600px]">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="table">Table</TabsTrigger>
-                <TabsTrigger value="chart">Charts</TabsTrigger>
-              </TabsList>
+          <Tabs defaultValue="chart">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="chart">Charts</TabsTrigger>
+              <TabsTrigger value="table">Table</TabsTrigger>
+            </TabsList>
 
-              <TabsContent value="table">
-                {history.length !== 0 && <SleepTrackerTable data={history} total={total} />}
-                {history.length === 0 && <EmptyState />}
-              </TabsContent>
+            <TabsContent value="table">
+              {history.length !== 0 && <SleepTrackerTable data={history} total={total} />}
+              {history.length === 0 && <EmptyState />}
+            </TabsContent>
 
-              <TabsContent value="chart">
-                {history.length !== 0 && <SleepTrackerChart data={history} />}
-                {history.length === 0 && <EmptyState />}
-              </TabsContent>
-            </Tabs>
-          </div>
+            <TabsContent value="chart">
+              {history.length !== 0 && <SleepTrackerChart data={history} />}
+              {history.length === 0 && <EmptyState />}
+            </TabsContent>
+          </Tabs>
         </div>
       </CardContent>
     </Card>

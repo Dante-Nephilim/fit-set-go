@@ -17,11 +17,9 @@ export default function Home() {
           </Button>
         </a>
       </div>
-      <div className="flex justify-center gap-4 m-5">
+      <div className="grid gap-4 p-5 md:flex justify-center md:flex-wrap">
         <WaterTracker />
         <SleepTracker />
-      </div>
-      <div className="flex justify-center gap-4 m-5">
         <BMITracker />
       </div>
     </>

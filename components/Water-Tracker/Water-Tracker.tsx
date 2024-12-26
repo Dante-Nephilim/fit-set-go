@@ -39,30 +39,28 @@ function WaterTracker() {
       </CardHeader>
       <CardContent>
         <div>
-          <div className="flex justify-center gap-5">
+          <div className="flex justify-center gap-5 flex-wrap mb-5">
             <Button onClick={() => addWaterIntake(100)}>+100 ml</Button>
             <Button onClick={() => addWaterIntake(200)}>+200 ml</Button>
             <Button onClick={() => addWaterIntake(500)}>+500 ml</Button>
             <Button onClick={() => addWaterIntake(1000)}>+1000 ml</Button>
           </div>
-          <div className="flex justify-center mt-4">
-            <Tabs defaultValue="chart" className="w-[600px]">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="table">Table</TabsTrigger>
-                <TabsTrigger value="chart">Charts</TabsTrigger>
-              </TabsList>
+          <Tabs defaultValue="chart">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="chart">Charts</TabsTrigger>
+              <TabsTrigger value="table">Table</TabsTrigger>
+            </TabsList>
 
-              <TabsContent value="table">
-                {history.length !== 0 && <WaterTrackerTable data={history} total={total} />}
-                {history.length === 0 && <EmptyState />}
-              </TabsContent>
+            <TabsContent value="table">
+              {history.length !== 0 && <WaterTrackerTable data={history} total={total} />}
+              {history.length === 0 && <EmptyState />}
+            </TabsContent>
 
-              <TabsContent value="chart">
-                {history.length !== 0 && <WaterTrackerChart data={history} />}
-                {history.length === 0 && <EmptyState />}
-              </TabsContent>
-            </Tabs>
-          </div>
+            <TabsContent value="chart">
+              {history.length !== 0 && <WaterTrackerChart data={history} />}
+              {history.length === 0 && <EmptyState />}
+            </TabsContent>
+          </Tabs>
         </div>
       </CardContent>
     </Card>
