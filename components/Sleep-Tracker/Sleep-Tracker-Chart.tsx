@@ -8,7 +8,7 @@ type Props = {
 const chartConfig = {
   quantity: {
     label: "Duration",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 

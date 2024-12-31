@@ -8,7 +8,7 @@ type Props = {
 const chartConfig = {
   bmi: {
     label: "BMI",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
