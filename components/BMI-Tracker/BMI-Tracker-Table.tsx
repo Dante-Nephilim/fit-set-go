@@ -26,7 +26,9 @@ function BMITable(props: Props) {
               <TableCell>{h.weight}</TableCell>
               <TableCell>{h.height}</TableCell>
               <TableCell>{h.bmi}</TableCell>
-              <TableCell>{`${h.date.toLocaleDateString()} ${h.date.toLocaleTimeString()}`}</TableCell>
+              <TableCell>{`${new Date(h.date).toLocaleDateString()} ${new Date(
+                h.date
+              ).toLocaleTimeString()}`}</TableCell>
             </TableRow>
           );
         })}

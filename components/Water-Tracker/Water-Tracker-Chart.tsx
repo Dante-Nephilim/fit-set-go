@@ -23,7 +23,7 @@ function WaterTrackerChart(props: Props) {
           tickLine={false}
           tickMargin={10}
           axisLine={false}
-          tickFormatter={(value) => `${(value as Date).toLocaleDateString()} ${(value as Date).toLocaleTimeString()}`}
+          tickFormatter={(value) => `${new Date(value).toLocaleDateString()} ${new Date(value).toLocaleTimeString()}`}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
         <Bar dataKey="quantity" fill="var(--color-desktop)" radius={8} />

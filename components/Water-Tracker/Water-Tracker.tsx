@@ -1,13 +1,15 @@
-import { useMemo, useState } from "react";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import WaterTrackerTable from "./Water-Tracker-Table";
 import WaterTrackerChart from "./Water-Tracker-Chart";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { fitSetGoActions } from "@/store/slice/slice";
+import { selectWaterIntakeHistory, selectWaterIntakeHistoryTotal } from "@/store/selectors/selector";
+import { useSelector, useDispatch } from "react-redux";
 
 export type WaterIntakeHistory = {
   quantity: number;
-  date: Date;
+  date: string;
   id: string;
 };
 
@@ -20,16 +22,14 @@ function EmptyState() {
   );
 }
 function WaterTracker() {
-  const [history, setHistory] = useState<WaterIntakeHistory[]>([]);
-
-  const total = useMemo(() => {
-    return history.reduce((acc, current) => {
-      return acc + current.quantity;
-    }, 0);
-  }, [history]);
+  const history = useSelector(selectWaterIntakeHistory);
+  const total = useSelector(selectWaterIntakeHistoryTotal);
+  const dispatch = useDispatch();
 
   function addWaterIntake(quantity: number) {
-    setHistory((hist) => [...hist, { quantity: quantity, date: new Date(), id: crypto.randomUUID() }]);
+    dispatch(
+      fitSetGoActions.addWaterIntake({ quantity: quantity, date: new Date().toISOString(), id: crypto.randomUUID() })
+    );
   }
 
   return (

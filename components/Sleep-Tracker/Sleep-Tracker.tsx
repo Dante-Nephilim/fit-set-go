@@ -1,13 +1,15 @@
-import { useMemo, useState } from "react";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import SleepTrackerTable from "./Sleep-Tracker-Table";
 import SleepTrackerChart from "./Sleep-Tracker-Chart";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { selectSleepDurationHistory, selectSleepDurationHistoryTotal } from "@/store/selectors/selector";
+import { fitSetGoActions } from "@/store/slice/slice";
+import { useSelector, useDispatch } from "react-redux";
 
 export type SleepDurationHistory = {
   duration: number;
-  date: Date;
+  date: string;
   id: string;
 };
 
@@ -20,16 +22,14 @@ function EmptyState() {
   );
 }
 function SleepTracker() {
-  const [history, setHistory] = useState<SleepDurationHistory[]>([]);
-
-  const total = useMemo(() => {
-    return history.reduce((acc, current) => {
-      return acc + current.duration;
-    }, 0);
-  }, [history]);
+  const history = useSelector(selectSleepDurationHistory);
+  const total = useSelector(selectSleepDurationHistoryTotal);
+  const dispatch = useDispatch();
 
   function addSleepIntake(duration: number) {
-    setHistory((hist) => [...hist, { duration: duration, date: new Date(), id: crypto.randomUUID() }]);
+    dispatch(
+      fitSetGoActions.addSleepDuration({ duration: duration, date: new Date().toISOString(), id: crypto.randomUUID() })
+    );
   }
 
   return (

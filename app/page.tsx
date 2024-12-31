@@ -4,7 +4,9 @@ import BMITracker from "@/components/BMI-Tracker/BMI-Tracker";
 import SleepTracker from "@/components/Sleep-Tracker/Sleep-Tracker";
 import { Button } from "@/components/ui/button";
 import WaterTracker from "@/components/Water-Tracker/Water-Tracker";
+import { store } from "@/store/store";
 import { Github } from "lucide-react";
+import { Provider } from "react-redux";
 
 export default function Home() {
   return (
@@ -17,11 +19,13 @@ export default function Home() {
           </Button>
         </a>
       </div>
-      <div className="max-w-2xl m-auto grid gap-10">
-        <WaterTracker />
-        <SleepTracker />
-        <BMITracker />
-      </div>
+      <Provider store={store}>
+        <div className="max-w-2xl m-auto grid gap-10">
+          <WaterTracker />
+          <SleepTracker />
+          <BMITracker />
+        </div>
+      </Provider>
     </>
   );
 }

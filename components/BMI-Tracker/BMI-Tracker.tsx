@@ -16,12 +16,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBMIHistory } from "@/store/selectors/selector";
+import { fitSetGoActions } from "@/store/slice/slice";
 
 export type BMIHistory = {
   weight: number;
   height: number;
   bmi: number;
-  date: Date;
+  date: string;
   id: string;
 };
 
@@ -37,11 +40,19 @@ function EmptyState() {
 function BMITracker() {
   const [weight, setWeight] = useState<number>(60);
   const [height, setHeight] = useState<number>(5.5);
-  const [history, setHistory] = useState<BMIHistory[]>([]);
-
+  const history = useSelector(selectBMIHistory);
+  const dispatch = useDispatch();
   const calculateBMI = () => {
     const BMI = Math.floor(weight / (height * height));
-    setHistory([...history, { weight: weight, height: height, bmi: BMI, date: new Date(), id: crypto.randomUUID() }]);
+    dispatch(
+      fitSetGoActions.addBMI({
+        weight: weight,
+        height: height,
+        bmi: BMI,
+        date: new Date().toISOString(),
+        id: crypto.randomUUID(),
+      })
+    );
   };
 
   return (

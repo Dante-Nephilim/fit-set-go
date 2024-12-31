@@ -23,7 +23,9 @@ function SleepTrackerTable(props: Props) {
             <TableRow key={h.id}>
               <TableCell>{h.id}</TableCell>
               <TableCell>{h.duration}</TableCell>
-              <TableCell>{`${h.date.toLocaleDateString()} ${h.date.toLocaleTimeString()}`}</TableCell>
+              <TableCell>{`${new Date(h.date).toLocaleDateString()} ${new Date(
+                h.date
+              ).toLocaleTimeString()}`}</TableCell>
             </TableRow>
           );
         })}
